@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export default function App() {
   const [characters, setCharacters] = useState([]);
-  const [showCard, setShowCard] = useState(true)
 
     const arr = [{
       id: 1,
@@ -21,13 +20,16 @@ export default function App() {
     }]
 
   function onSearch(){
+    setCharacters(e => [...e, ...arr])
+  }
 
-    setCharacters(e => [...e, arr])
+  function onClose(index){
+    setCharacters(characters.filter((_, i) => i !== index))
   }
   return (
     <div className='App'>
       <Nav onSearch={onSearch}/>
-      <Cards characters={characters}/>
+      <Cards characters={characters} onClose={onClose}/>
     </div>
   )
 }
