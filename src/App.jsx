@@ -19,8 +19,16 @@ export default function App() {
       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
     }]
 
-  function onSearch(){
-    setCharacters(e => [...e, ...arr])
+  function onSearch(id){
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(data => data.json())
+      .then(data => {
+        if (data.name) {
+          setCharacters(oldChars => [...oldChars, data])
+        } else {
+          window.alert('¡No hay personaje con este ID!')
+        }
+      })
   }
 
   function onClose(index){
