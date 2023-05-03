@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 function SearchBar({onSearch}) {
   const [id, setId] = useState("")
@@ -19,6 +20,14 @@ function SearchBar({onSearch}) {
 
 export default function Nav({onSearch}) {
   return (
+  <>
     <SearchBar onSearch={onSearch}/>
+    <button>
+      <Link to="/about">About</Link>
+    </button>
+    <button>
+      <Link to="/home">Home</Link>
+    </button>
+  </>
   )
 }
